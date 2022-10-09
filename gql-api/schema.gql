@@ -7,15 +7,28 @@ input CreateTagInput {
   exampleField: Int!
 }
 
+input CreateUserInput {
+  """The users email address."""
+  email: String!
+
+  """The users name (for display purposes)"""
+  name: String!
+}
+
 type Mutation {
   createTag(createTagInput: CreateTagInput!): Tag!
+  createUser(createUserInput: CreateUserInput!): User!
   removeTag(id: Int!): Tag!
+  removeUser(id: Int!): User!
   updateTag(updateTagInput: UpdateTagInput!): Tag!
+  updateUser(updateUserInput: UpdateUserInput!): User!
 }
 
 type Query {
   tag(id: Int!): Tag!
   tags: [Tag!]!
+  user(id: Int!): User!
+  users: [User!]!
 }
 
 type Tag {
@@ -30,4 +43,26 @@ input UpdateTagInput {
   """Example field (placeholder)"""
   exampleField: Int
   id: ID!
+}
+
+input UpdateUserInput {
+  """The users email address."""
+  email: String
+
+  """The Users identifier."""
+  id: Int!
+
+  """The users name (for display purposes)"""
+  name: String
+}
+
+type User {
+  """The users email address."""
+  email: String!
+
+  """The Users identifier."""
+  id: Int!
+
+  """The users name (for display purposes)"""
+  name: String!
 }

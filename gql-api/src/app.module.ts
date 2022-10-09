@@ -6,7 +6,8 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { join } from 'path';
 import { ApolloServerPluginLandingPageLocalDefault } from 'apollo-server-core';
-import { TagsModule } from './tags/tags.module';
+import { TagsModule } from './resources/tags/tags.module';
+import { UsersModule } from './resources/users/users.module';
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { TagsModule } from './tags/tags.module';
       plugins: [ApolloServerPluginLandingPageLocalDefault()],
     }),
     TagsModule,
+    UsersModule,
   ],
   controllers: [AppController],
   providers: [AppService],
