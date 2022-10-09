@@ -1,0 +1,33 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+input CreateTagInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+type Mutation {
+  createTag(createTagInput: CreateTagInput!): Tag!
+  removeTag(id: Int!): Tag!
+  updateTag(updateTagInput: UpdateTagInput!): Tag!
+}
+
+type Query {
+  tag(id: Int!): Tag!
+  tags: [Tag!]!
+}
+
+type Tag {
+  """Example field (placeholder)"""
+  exampleField: Int!
+
+  """The tags unique internal identifier."""
+  id: ID!
+}
+
+input UpdateTagInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: ID!
+}
