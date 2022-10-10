@@ -6,7 +6,7 @@ import { User } from './entities/user.entity';
 
 @Injectable()
 export class UsersService {
-  constructor(private prisma: PrismaService) {}
+  constructor(private readonly prisma: PrismaService) {}
 
   async create(createUserInput: CreateUserInput): Promise<User> {
     return await this.prisma.user.create({
@@ -25,9 +25,9 @@ export class UsersService {
     return await this.prisma.user.findUnique({ where: { id } });
   }
 
-  async update(id: number, updateUserInput: UpdateUserInput): Promise<User> {
+  async update(updateUserInput: UpdateUserInput): Promise<User> {
     return await this.prisma.user.update({
-      where: { id },
+      where: { id: updateUserInput.id },
       data: {
         email: updateUserInput.email,
         name: updateUserInput.name,
