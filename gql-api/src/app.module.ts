@@ -1,3 +1,4 @@
+import { ResourcesModule } from './resources/resources.module';
 import { ConfigModule } from '@nestjs/config';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { GraphQLModule } from '@nestjs/graphql';
@@ -6,8 +7,6 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { join } from 'path';
 import { ApolloServerPluginLandingPageLocalDefault } from 'apollo-server-core';
-import { TagsModule } from './resources/tags/tags.module';
-import { UsersModule } from './resources/users/users.module';
 
 @Module({
   imports: [
@@ -21,8 +20,7 @@ import { UsersModule } from './resources/users/users.module';
       playground: false,
       plugins: [ApolloServerPluginLandingPageLocalDefault()],
     }),
-    TagsModule,
-    UsersModule,
+    ResourcesModule,
   ],
   controllers: [AppController],
   providers: [AppService],

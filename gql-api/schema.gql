@@ -7,6 +7,20 @@ input CreateTagInput {
   exampleField: Int!
 }
 
+input CreateTaskInput {
+  """A description of the task that took place."""
+  description: String!
+
+  """The date/time stamp of when the task completed."""
+  endTime: DateTime!
+
+  """The identifier of the owner to which this task belongs."""
+  ownerId: Int!
+
+  """The date/time stamp of when the task began."""
+  startTime: DateTime!
+}
+
 input CreateUserInput {
   """The users email address."""
   email: String!
@@ -15,18 +29,28 @@ input CreateUserInput {
   name: String!
 }
 
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
 type Mutation {
   createTag(createTagInput: CreateTagInput!): Tag!
+  createTasks(createTaskInput: CreateTaskInput!): Task!
   createUser(createUserInput: CreateUserInput!): User!
   removeTag(id: Int!): Tag!
+  removeTask(id: Int!): Task!
   removeUser(id: Int!): User!
   updateTag(updateTagInput: UpdateTagInput!): Tag!
+  updateTasks(updateTaskInput: UpdateTaskInput!): Task!
   updateUser(updateUserInput: UpdateUserInput!): User!
 }
 
 type Query {
   tag(id: Int!): Tag!
   tags: [Tag!]!
+  task(id: Int!): Task!
+  tasks(userId: Int!): [Task!]!
   user(id: Int!): User!
   users: [User!]!
 }
@@ -39,10 +63,39 @@ type Tag {
   id: ID!
 }
 
+type Task {
+  """A description of the task that took place."""
+  description: String!
+
+  """The date/time stamp of when the task completed."""
+  endTime: DateTime!
+
+  """The task identifier."""
+  id: Int!
+
+  """The date/time stamp of when the task began."""
+  startTime: DateTime!
+}
+
 input UpdateTagInput {
   """Example field (placeholder)"""
   exampleField: Int
   id: ID!
+}
+
+input UpdateTaskInput {
+  """A description of the task that took place."""
+  description: String
+
+  """The date/time stamp of when the task completed."""
+  endTime: DateTime
+  id: Int!
+
+  """The identifier of the owner to which this task belongs."""
+  ownerId: Int
+
+  """The date/time stamp of when the task began."""
+  startTime: DateTime
 }
 
 input UpdateUserInput {
