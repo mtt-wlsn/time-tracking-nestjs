@@ -3,8 +3,16 @@
 # ------------------------------------------------------
 
 input CreateTagInput {
-  """Example field (placeholder)"""
-  exampleField: Int!
+  """A detailed description of the tag.  Shown when viewing tag details."""
+  description: String!
+
+  """The label of the tag that appears whenever in most non-detailed views."""
+  label: String!
+
+  """
+  A more detailed name of the tag that will be displayed when viewing tag details.  May commonly be identical to the tag.
+  """
+  name: String!
 }
 
 input CreateTaskInput {
@@ -56,11 +64,19 @@ type Query {
 }
 
 type Tag {
-  """Example field (placeholder)"""
-  exampleField: Int!
+  """A detailed description of the tag.  Shown when viewing tag details."""
+  description: String!
 
   """The tags unique internal identifier."""
-  id: ID!
+  id: Int!
+
+  """The label of the tag that appears whenever in most non-detailed views."""
+  label: String!
+
+  """
+  A more detailed name of the tag that will be displayed when viewing tag details.  May commonly be identical to the tag.
+  """
+  name: String!
 }
 
 type Task {
@@ -78,9 +94,17 @@ type Task {
 }
 
 input UpdateTagInput {
-  """Example field (placeholder)"""
-  exampleField: Int
-  id: ID!
+  """A detailed description of the tag.  Shown when viewing tag details."""
+  description: String
+  id: Int!
+
+  """The label of the tag that appears whenever in most non-detailed views."""
+  label: String
+
+  """
+  A more detailed name of the tag that will be displayed when viewing tag details.  May commonly be identical to the tag.
+  """
+  name: String
 }
 
 input UpdateTaskInput {

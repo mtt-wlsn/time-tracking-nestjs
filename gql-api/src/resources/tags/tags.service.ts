@@ -1,36 +1,43 @@
 import { Injectable } from '@nestjs/common';
+import { PrismaService } from 'src/shared/prisma/prisma.service';
 import { CreateTagInput } from './dto/create-tag.input';
 import { UpdateTagInput } from './dto/update-tag.input';
 import { Tag } from './entities/tag.entity';
 
 @Injectable()
 export class TagsService {
-  private tags: Tag[] = [];
+  constructor(private readonly prisma: PrismaService) {}
 
-  create(createTagInput: CreateTagInput) {
-    const newTag: Tag = {
-      id: 1234,
-      exampleField: createTagInput.exampleField,
-    };
-    this.tags.push(newTag);
-    return newTag;
+  async create(createTagInput: CreateTagInput): Promise<Tag> {
+    return await this.prisma.tag.create({
+      data: {
+        label: createTagInput.label,
+        name: createTagInput.name,
+        description: createTagInput.description,
+      },
+    });
   }
 
-  findAll(): Tag[] {
-    return this.tags;
+  async findAll(): Promise<Tag[]> {
+    return await this.prisma.tag.findMany();
   }
 
-  findOne(id: number): Tag {
-    return this.tags.filter((tag) => tag.id == id)[0];
+  async findOne(id: number): Promise<Tag> {
+    return await this.prisma.tag.findUnique({ where: { id } });
   }
 
-  update(id: number, updateTagInput: UpdateTagInput) {
-    const tag = this.findOne(id);
-    tag.exampleField = updateTagInput.exampleField;
-    return tag;
+  async update(updateTagInput: UpdateTagInput): Promise<Tag> {
+    return await this.prisma.tag.update({
+      where: { id: updateTagInput.id },
+      data: {
+        label: updateTagInput.label,
+        name: updateTagInput.name,
+        description: updateTagInput.description,
+      },
+    });
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} tag`;
+  async remove(id: number): Promise<Tag> {
+    return await this.prisma.tag.delete({ where: { id } });
   }
 }
