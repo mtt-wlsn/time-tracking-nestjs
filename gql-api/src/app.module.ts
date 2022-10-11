@@ -16,7 +16,7 @@ import { ApolloServerPluginLandingPageLocalDefault } from 'apollo-server-core';
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       autoSchemaFile: join(process.cwd(), 'schema.gql'),
-      sortSchema: true,
+      sortSchema: false,
       playground: false,
       plugins: [ApolloServerPluginLandingPageLocalDefault()],
     }),
