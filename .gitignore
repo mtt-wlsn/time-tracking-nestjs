@@ -111,3 +111,4 @@ dist
 
 .yarnrc.yml
 .yarn
+.pnp.*
