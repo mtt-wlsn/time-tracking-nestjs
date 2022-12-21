@@ -2,6 +2,22 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type Tag {
+  """The tags unique internal identifier."""
+  id: Int!
+
+  """The label of the tag that appears whenever in most non-detailed views."""
+  label: String!
+
+  """
+  A more detailed name of the tag that will be displayed when viewing tag details.  May commonly be identical to the tag.
+  """
+  name: String!
+
+  """A detailed description of the tag.  Shown when viewing tag details."""
+  description: String!
+}
+
 type Task {
   """The task identifier."""
   id: Int!
@@ -14,6 +30,9 @@ type Task {
 
   """A description of the task that took place."""
   description: String!
+
+  """The tags that have been applied to this task."""
+  tags: [Tag!]
 }
 
 """
@@ -30,22 +49,6 @@ type User {
 
   """The users name (for display purposes)"""
   name: String!
-}
-
-type Tag {
-  """The tags unique internal identifier."""
-  id: Int!
-
-  """The label of the tag that appears whenever in most non-detailed views."""
-  label: String!
-
-  """
-  A more detailed name of the tag that will be displayed when viewing tag details.  May commonly be identical to the tag.
-  """
-  name: String!
-
-  """A detailed description of the tag.  Shown when viewing tag details."""
-  description: String!
 }
 
 type Query {

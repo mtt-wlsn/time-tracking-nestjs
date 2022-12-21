@@ -22,6 +22,14 @@ export class TagsService {
     return await this.prisma.tag.findMany();
   }
 
+  async findAllByTask(taskId: number): Promise<Tag[]> {
+    const task = await this.prisma.task.findFirst({
+      where: { id: taskId },
+      select: { tags: true },
+    });
+    return task.tags;
+  }
+
   async findOne(id: number): Promise<Tag> {
     return await this.prisma.tag.findUnique({ where: { id } });
   }

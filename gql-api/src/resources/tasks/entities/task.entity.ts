@@ -1,4 +1,5 @@
 import { ObjectType, Field, Int, GraphQLISODateTime } from '@nestjs/graphql';
+import { Tag } from 'src/resources/tags/entities/tag.entity';
 
 @ObjectType()
 export class Task {
@@ -19,4 +20,10 @@ export class Task {
     description: 'A description of the task that took place.',
   })
   description: string;
+
+  @Field(() => [Tag], {
+    nullable: true,
+    description: 'The tags that have been applied to this task.',
+  })
+  tags?: Tag[];
 }
